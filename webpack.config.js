@@ -6,9 +6,24 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
     entry: {
-        app: './src/index.js',
-        vendor: ["vue", "lodash"], // 指定公共使用的第三方类库
+        foo: './src/foo.js',
+        bar: './src/bar.js',
+        vendor: ["vue", "lodash", "vuex", "vue-router"], // 指定公共使用的第三方类库
     },
+    // optimization: {
+    //     runtimeChunk: {
+    //         name: "manifest"
+    //     },
+    //     splitChunks: {
+    //         cacheGroups: {
+    //             commons: {
+    //                 test: /[\\/]node_modules[\\/]/,
+    //                 name: "vendor",
+    //                 chunks: "all"
+    //             }
+    //         }
+    //     }
+    // },
     optimization: {
         splitChunks: {
             cacheGroups: {

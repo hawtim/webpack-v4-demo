@@ -1,4 +1,9 @@
-## webpack 入门指南
+## webpack v4 基础入门
+
+## webpack 的基本概念
+webpack 是一个 JS 代码模块化的打包工具，藉由它强大的扩展能力，逐渐成为一个功能完善的构建工具。它会根据代码的内容解析模块依赖，帮助我们把多个模块的代码打包
+![webpack 打包图例](./static/webpack.png)
+如上图，webpack 会把我们项目中使用到的多个代码模块（可以是不同文件类型），打包构建成项目运行仅需要的几个静态文件。webpack 有着十分丰富的配置项，提供了十分强大的扩展能力，可以在打包构建的过程中做很多事情。我们先来看一下 webpack 中的几个基本概念。
 
 ## 安装和使用
 
@@ -7,12 +12,9 @@ npm init
 npm install webpack webpack-cli
 ```
 
-## webpack 的基本概念
-它会根据代码的内容解析模块依赖，帮助我们把多个模块的代码打包
-![webpack 打包图例](./static/webpack.png)
-
 ## 入口
-我们常见的项目中，如果是单页面应用，那么可能入口只有一个；如果是多个页面的项目，那么经常是一个页面会对应一个构建入口。
+我们常见的项目中，如果是单页面应用，那么可能入口只有一个；
+如果是多个页面的项目，那么经常是一个页面会对应一个构建入口。
 入口可以使用 entry 字段来进行配置，webpack 支持配置多个入口来进行构建：
 ```js
 
@@ -37,7 +39,7 @@ module.exports = {
 }
 
 // 使用数组来对多个文件进行打包
-// 可以理解为多个文件作为一个入口，webpack 会解析两个文件的依赖后进行打包。 (TODO 实例演示)
+// 可以理解为多个文件作为一个入口，webpack 会解析两个文件的依赖后进行打包。
 module.exports = {
   entry: {
     main: [
@@ -52,12 +54,13 @@ module.exports = {
 ## loader
 webpack 中提供一种处理多种文件格式的机制，便是使用 loader。我们可以把 loader 理解为是一个转换器，负责把某种文件格式的内容转换成 webpack 可以支持打包的模块。
 
-举个例子，在没有添加额外插件的情况下，webpack 会默认把所有依赖打包成 js 文件，如果入口文件依赖一个 .hbs 的模板文件以及一个 .css 的样式文件，那么我们需要 handlebars-loader 来处理 .hbs 文件，需要 css-loader 来处理 .css 文件（这里其实还需要 style-loader，后续详解），最终把不同格式的文件都解析成 js 代码，以便打包后在浏览器中运行。...
+举个例子，在没有添加额外插件的情况下，webpack 会默认把所有依赖打包成 js 文件，如果入口文件依赖一个 .hbs 的模板文件以及一个 .css 的样式文件，那么我们需要 handlebars-loader 来处理 .hbs 文件，需要 css-loader 来处理 .css 文件（这里其实还需要 style-loader，后续详解），最终把不同格式的文件都解析成 js 代码，以便打包后在浏览器中运行。
+
 当我们需要使用不同的 loader 来解析处理不同类型的文件时，我们可以在 module.rules 字段下来配置相关的规则，例如使用 Babel 来处理 .js 文件：
 
 ```js
 module: {
-  // ...
+  // 
   rules: [
     {
       test: /\.jsx?/, // 匹配文件路径的正则表达式，通常我们都是匹配文件类型后缀
@@ -69,7 +72,7 @@ module: {
   ],
 }
 ```
-loader 是 webpack 中比较复杂的一块内容，它支撑着 webpack 来处理文件的多样性
+**总结**：loader 是 webpack 中比较复杂的一块内容，它支撑着 webpack 来处理文件的多样性
 
 ## plugin
 plugin 用于处理更多其他的一些构建任务。
@@ -211,3 +214,11 @@ module.exports = {
 当你指定使用 production mode 时，默认会启用各种性能优化的功能，包括构建结果优化以及 webpack 运行性能优化，而如果是 development mode 的话，则会开启 debug 工具，运行时打印详细的错误信息，以及更加快速的增量编译构建...
 
 webpack 4.x 版本引入了 mode 的概念，在运行 webpack 时需要指定使用 production 或 development 两个 mode 其中一个，这个功能也就是我们所需要的运行两套构建环境的能力。
+
+## loader 
+loader本质上的实现是一个函数
+如何开始着手开发一个 loader
+loader 的输入和输出
+pitch 函数的作用
+loader 函数的上下文
+一个好的 loader 是怎么样的

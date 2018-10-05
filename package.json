@@ -23,6 +23,9 @@
     "image-webpack-loader": "^4.3.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9",
     "webpack-spritesmith": "^0.5.3"
